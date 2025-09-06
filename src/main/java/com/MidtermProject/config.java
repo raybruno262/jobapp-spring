@@ -10,7 +10,7 @@ public class config implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-            .allowedOrigins("http://localhost:3000", "https://jobapp-react-sljy.onrender.com")
+            .allowedOrigins("http://localhost:3000", "https://jobapp-react-l15g.onrender.com")
             .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
             .allowCredentials(true)
             .allowedHeaders("Authorization", "Content-Type", "X-Requested-With", "Accept");
