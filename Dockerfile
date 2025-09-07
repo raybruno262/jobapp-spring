@@ -1,9 +1,15 @@
+# Stage 1: Build the Spring Boot app
+FROM maven:3.9.4-eclipse-temurin-17 AS builder
+WORKDIR /build
+COPY . .
+RUN mvn clean package -DskipTests
+
 # Stage 2: Run the app
 FROM openjdk:17-jdk-slim
 WORKDIR /app
 
-# Copy the built JAR file
-COPY --from=build /build/target/*.jar app.jar
+# ✅ Correct reference to the named build stage
+COPY --from=builder /build/target/*.jar app.jar
 
 # ✅ Set email credentials (not secure for public repos)
 ENV SPRING_MAIL_USERNAME=raybruno679@gmail.com
