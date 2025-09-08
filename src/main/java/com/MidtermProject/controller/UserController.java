@@ -151,13 +151,13 @@ public ResponseEntity<Void> changePassword(
 
 
     // OTP Operations
-    @PostMapping("/otp/login")
-    public ResponseEntity<Void> sendLoginOtp(@RequestParam String email) {
-        userService.dispatchLoginVerificationCode(email);
-        System.out.println("Otp sent to " + email);
-        return ResponseEntity.noContent().build();
+    // @PostMapping("/otp/login")
+    // public ResponseEntity<Void> sendLoginOtp(@RequestParam String email) {
+    //     userService.dispatchLoginVerificationCode(email);
+    //     System.out.println("Otp sent to " + email);
+    //     return ResponseEntity.noContent().build();
         
-    }
+    // }
 
 
 
@@ -175,13 +175,13 @@ public ResponseEntity<Void> changePassword(
 
 
     // Password Reset Operations
-    @PostMapping("/password/reset/otp")
-    public ResponseEntity<Void> sendPasswordResetOtp(
-            @RequestParam String email,
-            @RequestParam String otpEmail) {
-        userService.dispatchPasswordResetCode(email, otpEmail);
-        return ResponseEntity.noContent().build();
-    }
+    // @PostMapping("/password/reset/otp")
+    // public ResponseEntity<Void> sendPasswordResetOtp(
+    //         @RequestParam String email,
+    //         @RequestParam String otpEmail) {
+    //     userService.dispatchPasswordResetCode(email, otpEmail);
+    //     return ResponseEntity.noContent().build();
+    // }
 
 
 

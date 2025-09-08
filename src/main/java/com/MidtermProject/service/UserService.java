@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 public class UserService {
     private final UserRepository userDataStore;
     private final ConcurrentHashMap<String, String> otpCache = new ConcurrentHashMap<>();
-    private final JavaMailSender emailDispatcher;
+    // private final JavaMailSender emailDispatcher;
     private final HttpSession userSession;
 
     // Security Utilities
@@ -210,36 +210,36 @@ public void changeUserPassword(Integer userId, String currentPassword, String ne
 
 
     // OTP Services
-    public void dispatchLoginVerificationCode(String recipientEmail) {
-        String verificationCode = generateRandomCode();
-        otpCache.put(recipientEmail, verificationCode);
+    // public void dispatchLoginVerificationCode(String recipientEmail) {
+    //     String verificationCode = generateRandomCode();
+    //     otpCache.put(recipientEmail, verificationCode);
 
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(recipientEmail);
-        message.setSubject("Your Verification Code");
-        message.setText("Your login verification code is: " + verificationCode);
-        emailDispatcher.send(message);
-    }
-
-
+    //     SimpleMailMessage message = new SimpleMailMessage();
+    //     message.setTo(recipientEmail);
+    //     message.setSubject("Your Verification Code");
+    //     message.setText("Your login verification code is: " + verificationCode);
+    //     emailDispatcher.send(message);
+    // }
 
 
-    public void dispatchPasswordResetCode(String email, String otpEmail) {
-        // Verify the user exists with the provided email
-        if (!userDataStore.findByEmail(email).isPresent()) {
-            throw new EntityNotFoundException("No user found with this email");
-        }
+
+
+    // public void dispatchPasswordResetCode(String email, String otpEmail) {
+    //     // Verify the user exists with the provided email
+    //     if (!userDataStore.findByEmail(email).isPresent()) {
+    //         throw new EntityNotFoundException("No user found with this email");
+    //     }
         
-        String verificationCode = generateRandomCode();
-        // Store OTP with the otpEmail as key (could be different from user's email)
-        otpCache.put(otpEmail + "_reset", verificationCode);
+    //     String verificationCode = generateRandomCode();
+    //     // Store OTP with the otpEmail as key (could be different from user's email)
+    //     otpCache.put(otpEmail + "_reset", verificationCode);
 
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(otpEmail);
-        message.setSubject("Your Password Reset Code");
-        message.setText("Your password reset verification code is: " + verificationCode);
-        emailDispatcher.send(message);
-    }
+    //     SimpleMailMessage message = new SimpleMailMessage();
+    //     message.setTo(otpEmail);
+    //     message.setSubject("Your Password Reset Code");
+    //     message.setText("Your password reset verification code is: " + verificationCode);
+    //     emailDispatcher.send(message);
+    // }
 
 
 
@@ -321,7 +321,8 @@ public void changeUserPassword(Integer userId, String currentPassword, String ne
 
     
     // Helper Methods
-    private String generateRandomCode() {
-        return String.valueOf(100000 + new Random().nextInt(900000));
+    // private String generateRandomCode() {
+    //     return String.valueOf(100000 + new Random().nextInt(900000));
+    // }
+    
     }
-}
